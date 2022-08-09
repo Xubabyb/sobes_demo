@@ -14,8 +14,10 @@ import javax.persistence.*;
 public class PhoneData {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "phone_data_seq")
-    @SequenceGenerator(name = "phone_data_seq", sequenceName = "phone_data_seq", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "phone_data_seq", sequenceName = "phone_data_seq", allocationSize = 1)
     private Long id;
+
+    @Column(unique = true)
     private String phone;
 
     @ManyToOne(fetch = FetchType.LAZY)

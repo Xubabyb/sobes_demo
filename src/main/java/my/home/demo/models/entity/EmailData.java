@@ -15,9 +15,11 @@ import javax.validation.constraints.Email;
 public class EmailData {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "email_data_seq")
-    @SequenceGenerator(name = "email_data_seq", sequenceName = "email_data_seq", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "email_data_seq", sequenceName = "email_data_seq", allocationSize = 1)
     private Long id;
+
     @Email
+    @Column(name = "Email", unique = true)
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -3,9 +3,9 @@ package my.home.demo.models.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -17,12 +17,12 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
 
     private String name;
 
-    @Size(min = 8, max = 500)
+    @Length(min = 8, max = 500)
     private String password;
 
     private LocalDate dateOfBirth;
@@ -30,12 +30,6 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
-
-//    @OneToMany(mappedBy = "user")
-//    private List<EmailData> emailDataList;
-//
-//    @OneToMany(mappedBy = "user")
-//    private List<PhoneData> phoneDataList;
 
     @Override
     public boolean equals(Object o) {
